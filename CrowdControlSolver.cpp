@@ -13,7 +13,7 @@ CrowdControlSolver::CrowdControlSolver(string input, int numEntries) : pq(numEnt
 {
 	// TODO Auto-generated constructor stub
 	this->input = input;
-
+	sq.setMode(PriorityQueue<int>::DESCENDING);
 }
 
 CrowdControlSolver::~CrowdControlSolver() {
@@ -38,12 +38,13 @@ void CrowdControlSolver::parseInput()
 
 	while(ss >> beginTime >> duration >> severity)
 	{
-		Control c(beginTime,duration,severity);
+		Control c(beginTime,duration,severity,true);
 		pq.insert(c);
 	}
 }
 void CrowdControlSolver::produceOutput()
 {
+	cout << endl;
 	Control cc;
 	int currentTime = 0;
 	while(pq.size() > 0)
@@ -57,11 +58,12 @@ void CrowdControlSolver::produceOutput()
 				cc.beginTime += cc.duration;
 				cc.active = true;
 				pq.insert(cc);
+				cc.compareTime = false;
 				sq.insert(cc);
 			}
 			else
 			{
-				sq.deleteControl(cc);
+				sq.deleteObject(cc);
 			}
 		}
 		while(pq.getIndex(0).beginTime == currentTime);

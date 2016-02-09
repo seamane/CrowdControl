@@ -11,7 +11,7 @@
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>
 
-#define MAX 1000000
+#define MAX 100000
 #define SEVERITY_MAX 100000
 
 using namespace std;
@@ -57,14 +57,17 @@ int main()
 {
 	srand(time(NULL));
 
-	int numEntries;
+	int numEntries = 5;
 	cin >> numEntries;
 
 	string input = to_string(numEntries) + "\n" + generateString(numEntries);
+	cout << endl << input << endl;
 
 	CrowdControlSolver ccs(input,numEntries);
 	ccs.run();
-	cout << endl << input << endl;
+
+	system("pause");
+
 	return 0;
 }
 

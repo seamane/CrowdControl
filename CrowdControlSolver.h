@@ -10,7 +10,7 @@
 
 #include <string>
 #include "PriorityQueue.h"
-#include "SeverityQueue.h"
+#include "Control.h"
 
 using namespace std;
 
@@ -23,8 +23,9 @@ public:
 
 private:
 	string input;
-	PriorityQueue pq;
-	SeverityQueue sq;
+	PriorityQueue<Control> pq;
+//	SeverityQueue sq;
+	PriorityQueue<Control> sq;
 	Control currentSevereControl;
 
 
